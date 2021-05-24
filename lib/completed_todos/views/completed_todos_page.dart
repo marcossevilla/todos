@@ -7,6 +7,7 @@ class CompletedTodosPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CompletedTodosCubit, CompletedTodosState>(
+      buildWhen: (previous, current) => previous != current,
       builder: (_, state) {
         return state.when(
           empty: () => Center(child: Text('Nothing completed yet!')),

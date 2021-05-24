@@ -16,8 +16,6 @@ class CompletedTodosCubit extends Cubit<CompletedTodosState> {
     this.todosBloc,
   ) : super(CompletedTodosState.empty()) {
     _todosSubscription = todosBloc.stream.listen((state) {
-      print(state);
-
       state.maybeWhen(
         data: _handleSubscription,
         orElse: () => emit(CompletedTodosState.empty()),

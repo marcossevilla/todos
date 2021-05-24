@@ -13,9 +13,8 @@ class HomeView extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => TodosBloc()),
         BlocProvider(
-          create: (context) => CompletedTodosCubit(
-            context.read<TodosBloc>(),
-          ),
+          lazy: false,
+          create: (context) => CompletedTodosCubit(context.read<TodosBloc>()),
         ),
       ],
       child: HomePage(),
