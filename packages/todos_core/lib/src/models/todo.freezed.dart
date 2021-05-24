@@ -16,12 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$TodoTearOff {
   const _$TodoTearOff();
 
-  _Todo call(
-      {required bool complete, required String id, required String name}) {
+  _Todo call([bool complete = false, String name = '']) {
     return _Todo(
-      complete: complete,
-      id: id,
-      name: name,
+      complete,
+      name,
     );
   }
 }
@@ -32,7 +30,6 @@ const $Todo = _$TodoTearOff();
 /// @nodoc
 mixin _$Todo {
   bool get complete => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -43,7 +40,7 @@ mixin _$Todo {
 abstract class $TodoCopyWith<$Res> {
   factory $TodoCopyWith(Todo value, $Res Function(Todo) then) =
       _$TodoCopyWithImpl<$Res>;
-  $Res call({bool complete, String id, String name});
+  $Res call({bool complete, String name});
 }
 
 /// @nodoc
@@ -57,7 +54,6 @@ class _$TodoCopyWithImpl<$Res> implements $TodoCopyWith<$Res> {
   @override
   $Res call({
     Object? complete = freezed,
-    Object? id = freezed,
     Object? name = freezed,
   }) {
     return _then(_value.copyWith(
@@ -65,10 +61,6 @@ class _$TodoCopyWithImpl<$Res> implements $TodoCopyWith<$Res> {
           ? _value.complete
           : complete // ignore: cast_nullable_to_non_nullable
               as bool,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -82,7 +74,7 @@ abstract class _$TodoCopyWith<$Res> implements $TodoCopyWith<$Res> {
   factory _$TodoCopyWith(_Todo value, $Res Function(_Todo) then) =
       __$TodoCopyWithImpl<$Res>;
   @override
-  $Res call({bool complete, String id, String name});
+  $Res call({bool complete, String name});
 }
 
 /// @nodoc
@@ -97,19 +89,14 @@ class __$TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? complete = freezed,
-    Object? id = freezed,
     Object? name = freezed,
   }) {
     return _then(_Todo(
-      complete: complete == freezed
+      complete == freezed
           ? _value.complete
           : complete // ignore: cast_nullable_to_non_nullable
               as bool,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: name == freezed
+      name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
@@ -119,19 +106,19 @@ class __$TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Todo implements _Todo {
-  const _$_Todo({required this.complete, required this.id, required this.name});
+class _$_Todo extends _Todo {
+  _$_Todo([this.complete = false, this.name = '']) : super._();
 
+  @JsonKey(defaultValue: false)
   @override
   final bool complete;
-  @override
-  final String id;
+  @JsonKey(defaultValue: '')
   @override
   final String name;
 
   @override
   String toString() {
-    return 'Todo(complete: $complete, id: $id, name: $name)';
+    return 'Todo(complete: $complete, name: $name)';
   }
 
   @override
@@ -141,8 +128,6 @@ class _$_Todo implements _Todo {
             (identical(other.complete, complete) ||
                 const DeepCollectionEquality()
                     .equals(other.complete, complete)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)));
   }
@@ -151,7 +136,6 @@ class _$_Todo implements _Todo {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(complete) ^
-      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name);
 
   @JsonKey(ignore: true)
@@ -160,16 +144,12 @@ class _$_Todo implements _Todo {
       __$TodoCopyWithImpl<_Todo>(this, _$identity);
 }
 
-abstract class _Todo implements Todo {
-  const factory _Todo(
-      {required bool complete,
-      required String id,
-      required String name}) = _$_Todo;
+abstract class _Todo extends Todo {
+  factory _Todo([bool complete, String name]) = _$_Todo;
+  _Todo._() : super._();
 
   @override
   bool get complete => throw _privateConstructorUsedError;
-  @override
-  String get id => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
   @override

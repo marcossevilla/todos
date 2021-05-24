@@ -16,13 +16,16 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$TodosEventTearOff {
   const _$TodosEventTearOff();
 
-  _Started started() {
-    return const _Started();
-  }
-
   _TodoAdded todoAdded(Todo todoAdded) {
     return _TodoAdded(
       todoAdded,
+    );
+  }
+
+  _TodoUpdated todoUpdated(Todo todoAdded, bool complete) {
+    return _TodoUpdated(
+      todoAdded,
+      complete,
     );
   }
 
@@ -44,16 +47,16 @@ const $TodosEvent = _$TodosEventTearOff();
 mixin _$TodosEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
     required TResult Function(Todo todoAdded) todoAdded,
+    required TResult Function(Todo todoAdded, bool complete) todoUpdated,
     required TResult Function(Todo todoDeleted) todoDeleted,
     required TResult Function() todosCleared,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
     TResult Function(Todo todoAdded)? todoAdded,
+    TResult Function(Todo todoAdded, bool complete)? todoUpdated,
     TResult Function(Todo todoDeleted)? todoDeleted,
     TResult Function()? todosCleared,
     required TResult orElse(),
@@ -61,16 +64,16 @@ mixin _$TodosEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
     required TResult Function(_TodoAdded value) todoAdded,
+    required TResult Function(_TodoUpdated value) todoUpdated,
     required TResult Function(_TodoDeleted value) todoDeleted,
     required TResult Function(_TodosCleared value) todosCleared,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
     TResult Function(_TodoAdded value)? todoAdded,
+    TResult Function(_TodoUpdated value)? todoUpdated,
     TResult Function(_TodoDeleted value)? todoDeleted,
     TResult Function(_TodosCleared value)? todosCleared,
     required TResult orElse(),
@@ -95,102 +98,13 @@ class _$TodosEventCopyWithImpl<$Res> implements $TodosEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$StartedCopyWith<$Res> {
-  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
-      __$StartedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$StartedCopyWithImpl<$Res> extends _$TodosEventCopyWithImpl<$Res>
-    implements _$StartedCopyWith<$Res> {
-  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
-      : super(_value, (v) => _then(v as _Started));
-
-  @override
-  _Started get _value => super._value as _Started;
-}
-
-/// @nodoc
-
-class _$_Started implements _Started {
-  const _$_Started();
-
-  @override
-  String toString() {
-    return 'TodosEvent.started()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Started);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function(Todo todoAdded) todoAdded,
-    required TResult Function(Todo todoDeleted) todoDeleted,
-    required TResult Function() todosCleared,
-  }) {
-    return started();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(Todo todoAdded)? todoAdded,
-    TResult Function(Todo todoDeleted)? todoDeleted,
-    TResult Function()? todosCleared,
-    required TResult orElse(),
-  }) {
-    if (started != null) {
-      return started();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_TodoAdded value) todoAdded,
-    required TResult Function(_TodoDeleted value) todoDeleted,
-    required TResult Function(_TodosCleared value) todosCleared,
-  }) {
-    return started(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_TodoAdded value)? todoAdded,
-    TResult Function(_TodoDeleted value)? todoDeleted,
-    TResult Function(_TodosCleared value)? todosCleared,
-    required TResult orElse(),
-  }) {
-    if (started != null) {
-      return started(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Started implements TodosEvent {
-  const factory _Started() = _$_Started;
-}
-
-/// @nodoc
 abstract class _$TodoAddedCopyWith<$Res> {
   factory _$TodoAddedCopyWith(
           _TodoAdded value, $Res Function(_TodoAdded) then) =
       __$TodoAddedCopyWithImpl<$Res>;
   $Res call({Todo todoAdded});
+
+  $TodoCopyWith<$Res> get todoAdded;
 }
 
 /// @nodoc
@@ -212,6 +126,13 @@ class __$TodoAddedCopyWithImpl<$Res> extends _$TodosEventCopyWithImpl<$Res>
           : todoAdded // ignore: cast_nullable_to_non_nullable
               as Todo,
     ));
+  }
+
+  @override
+  $TodoCopyWith<$Res> get todoAdded {
+    return $TodoCopyWith<$Res>(_value.todoAdded, (value) {
+      return _then(_value.copyWith(todoAdded: value));
+    });
   }
 }
 
@@ -249,8 +170,8 @@ class _$_TodoAdded implements _TodoAdded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
     required TResult Function(Todo todoAdded) todoAdded,
+    required TResult Function(Todo todoAdded, bool complete) todoUpdated,
     required TResult Function(Todo todoDeleted) todoDeleted,
     required TResult Function() todosCleared,
   }) {
@@ -260,8 +181,8 @@ class _$_TodoAdded implements _TodoAdded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
     TResult Function(Todo todoAdded)? todoAdded,
+    TResult Function(Todo todoAdded, bool complete)? todoUpdated,
     TResult Function(Todo todoDeleted)? todoDeleted,
     TResult Function()? todosCleared,
     required TResult orElse(),
@@ -275,8 +196,8 @@ class _$_TodoAdded implements _TodoAdded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
     required TResult Function(_TodoAdded value) todoAdded,
+    required TResult Function(_TodoUpdated value) todoUpdated,
     required TResult Function(_TodoDeleted value) todoDeleted,
     required TResult Function(_TodosCleared value) todosCleared,
   }) {
@@ -286,8 +207,8 @@ class _$_TodoAdded implements _TodoAdded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
     TResult Function(_TodoAdded value)? todoAdded,
+    TResult Function(_TodoUpdated value)? todoUpdated,
     TResult Function(_TodoDeleted value)? todoDeleted,
     TResult Function(_TodosCleared value)? todosCleared,
     required TResult orElse(),
@@ -309,11 +230,159 @@ abstract class _TodoAdded implements TodosEvent {
 }
 
 /// @nodoc
+abstract class _$TodoUpdatedCopyWith<$Res> {
+  factory _$TodoUpdatedCopyWith(
+          _TodoUpdated value, $Res Function(_TodoUpdated) then) =
+      __$TodoUpdatedCopyWithImpl<$Res>;
+  $Res call({Todo todoAdded, bool complete});
+
+  $TodoCopyWith<$Res> get todoAdded;
+}
+
+/// @nodoc
+class __$TodoUpdatedCopyWithImpl<$Res> extends _$TodosEventCopyWithImpl<$Res>
+    implements _$TodoUpdatedCopyWith<$Res> {
+  __$TodoUpdatedCopyWithImpl(
+      _TodoUpdated _value, $Res Function(_TodoUpdated) _then)
+      : super(_value, (v) => _then(v as _TodoUpdated));
+
+  @override
+  _TodoUpdated get _value => super._value as _TodoUpdated;
+
+  @override
+  $Res call({
+    Object? todoAdded = freezed,
+    Object? complete = freezed,
+  }) {
+    return _then(_TodoUpdated(
+      todoAdded == freezed
+          ? _value.todoAdded
+          : todoAdded // ignore: cast_nullable_to_non_nullable
+              as Todo,
+      complete == freezed
+          ? _value.complete
+          : complete // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+
+  @override
+  $TodoCopyWith<$Res> get todoAdded {
+    return $TodoCopyWith<$Res>(_value.todoAdded, (value) {
+      return _then(_value.copyWith(todoAdded: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_TodoUpdated implements _TodoUpdated {
+  const _$_TodoUpdated(this.todoAdded, this.complete);
+
+  @override
+  final Todo todoAdded;
+  @override
+  final bool complete;
+
+  @override
+  String toString() {
+    return 'TodosEvent.todoUpdated(todoAdded: $todoAdded, complete: $complete)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _TodoUpdated &&
+            (identical(other.todoAdded, todoAdded) ||
+                const DeepCollectionEquality()
+                    .equals(other.todoAdded, todoAdded)) &&
+            (identical(other.complete, complete) ||
+                const DeepCollectionEquality()
+                    .equals(other.complete, complete)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(todoAdded) ^
+      const DeepCollectionEquality().hash(complete);
+
+  @JsonKey(ignore: true)
+  @override
+  _$TodoUpdatedCopyWith<_TodoUpdated> get copyWith =>
+      __$TodoUpdatedCopyWithImpl<_TodoUpdated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Todo todoAdded) todoAdded,
+    required TResult Function(Todo todoAdded, bool complete) todoUpdated,
+    required TResult Function(Todo todoDeleted) todoDeleted,
+    required TResult Function() todosCleared,
+  }) {
+    return todoUpdated(this.todoAdded, complete);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Todo todoAdded)? todoAdded,
+    TResult Function(Todo todoAdded, bool complete)? todoUpdated,
+    TResult Function(Todo todoDeleted)? todoDeleted,
+    TResult Function()? todosCleared,
+    required TResult orElse(),
+  }) {
+    if (todoUpdated != null) {
+      return todoUpdated(this.todoAdded, complete);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_TodoAdded value) todoAdded,
+    required TResult Function(_TodoUpdated value) todoUpdated,
+    required TResult Function(_TodoDeleted value) todoDeleted,
+    required TResult Function(_TodosCleared value) todosCleared,
+  }) {
+    return todoUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_TodoAdded value)? todoAdded,
+    TResult Function(_TodoUpdated value)? todoUpdated,
+    TResult Function(_TodoDeleted value)? todoDeleted,
+    TResult Function(_TodosCleared value)? todosCleared,
+    required TResult orElse(),
+  }) {
+    if (todoUpdated != null) {
+      return todoUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TodoUpdated implements TodosEvent {
+  const factory _TodoUpdated(Todo todoAdded, bool complete) = _$_TodoUpdated;
+
+  Todo get todoAdded => throw _privateConstructorUsedError;
+  bool get complete => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$TodoUpdatedCopyWith<_TodoUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$TodoDeletedCopyWith<$Res> {
   factory _$TodoDeletedCopyWith(
           _TodoDeleted value, $Res Function(_TodoDeleted) then) =
       __$TodoDeletedCopyWithImpl<$Res>;
   $Res call({Todo todoDeleted});
+
+  $TodoCopyWith<$Res> get todoDeleted;
 }
 
 /// @nodoc
@@ -336,6 +405,13 @@ class __$TodoDeletedCopyWithImpl<$Res> extends _$TodosEventCopyWithImpl<$Res>
           : todoDeleted // ignore: cast_nullable_to_non_nullable
               as Todo,
     ));
+  }
+
+  @override
+  $TodoCopyWith<$Res> get todoDeleted {
+    return $TodoCopyWith<$Res>(_value.todoDeleted, (value) {
+      return _then(_value.copyWith(todoDeleted: value));
+    });
   }
 }
 
@@ -373,8 +449,8 @@ class _$_TodoDeleted implements _TodoDeleted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
     required TResult Function(Todo todoAdded) todoAdded,
+    required TResult Function(Todo todoAdded, bool complete) todoUpdated,
     required TResult Function(Todo todoDeleted) todoDeleted,
     required TResult Function() todosCleared,
   }) {
@@ -384,8 +460,8 @@ class _$_TodoDeleted implements _TodoDeleted {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
     TResult Function(Todo todoAdded)? todoAdded,
+    TResult Function(Todo todoAdded, bool complete)? todoUpdated,
     TResult Function(Todo todoDeleted)? todoDeleted,
     TResult Function()? todosCleared,
     required TResult orElse(),
@@ -399,8 +475,8 @@ class _$_TodoDeleted implements _TodoDeleted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
     required TResult Function(_TodoAdded value) todoAdded,
+    required TResult Function(_TodoUpdated value) todoUpdated,
     required TResult Function(_TodoDeleted value) todoDeleted,
     required TResult Function(_TodosCleared value) todosCleared,
   }) {
@@ -410,8 +486,8 @@ class _$_TodoDeleted implements _TodoDeleted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
     TResult Function(_TodoAdded value)? todoAdded,
+    TResult Function(_TodoUpdated value)? todoUpdated,
     TResult Function(_TodoDeleted value)? todoDeleted,
     TResult Function(_TodosCleared value)? todosCleared,
     required TResult orElse(),
@@ -471,8 +547,8 @@ class _$_TodosCleared implements _TodosCleared {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
     required TResult Function(Todo todoAdded) todoAdded,
+    required TResult Function(Todo todoAdded, bool complete) todoUpdated,
     required TResult Function(Todo todoDeleted) todoDeleted,
     required TResult Function() todosCleared,
   }) {
@@ -482,8 +558,8 @@ class _$_TodosCleared implements _TodosCleared {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
     TResult Function(Todo todoAdded)? todoAdded,
+    TResult Function(Todo todoAdded, bool complete)? todoUpdated,
     TResult Function(Todo todoDeleted)? todoDeleted,
     TResult Function()? todosCleared,
     required TResult orElse(),
@@ -497,8 +573,8 @@ class _$_TodosCleared implements _TodosCleared {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
     required TResult Function(_TodoAdded value) todoAdded,
+    required TResult Function(_TodoUpdated value) todoUpdated,
     required TResult Function(_TodoDeleted value) todoDeleted,
     required TResult Function(_TodosCleared value) todosCleared,
   }) {
@@ -508,8 +584,8 @@ class _$_TodosCleared implements _TodosCleared {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
     TResult Function(_TodoAdded value)? todoAdded,
+    TResult Function(_TodoUpdated value)? todoUpdated,
     TResult Function(_TodoDeleted value)? todoDeleted,
     TResult Function(_TodosCleared value)? todosCleared,
     required TResult orElse(),
@@ -533,7 +609,7 @@ class _$TodosStateTearOff {
     return const _Empty();
   }
 
-  _Data data(List<Todo> todos) {
+  _Data data([List<Todo> todos = const []]) {
     return _Data(
       todos,
     );
@@ -704,8 +780,9 @@ class __$DataCopyWithImpl<$Res> extends _$TodosStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Data implements _Data {
-  const _$_Data(this.todos);
+  const _$_Data([this.todos = const []]);
 
+  @JsonKey(defaultValue: const [])
   @override
   final List<Todo> todos;
 
@@ -777,7 +854,7 @@ class _$_Data implements _Data {
 }
 
 abstract class _Data implements TodosState {
-  const factory _Data(List<Todo> todos) = _$_Data;
+  const factory _Data([List<Todo> todos]) = _$_Data;
 
   List<Todo> get todos => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)

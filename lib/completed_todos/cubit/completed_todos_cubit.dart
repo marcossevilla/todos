@@ -2,31 +2,37 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:todos/todos/todos.dart';
-import 'package:todos_core/todos.dart';
 
 part 'completed_todos_state.dart';
 part 'completed_todos_cubit.freezed.dart';
 
 class CompletedTodosCubit extends Cubit<CompletedTodosState> {
-  late final TodosBloc _todosBloc;
-  late final StreamSubscription _todosSubscription;
+  final TodosBloc todosBloc;
+  late StreamSubscription _todosSubscription;
 
   CompletedTodosCubit(
-    TodosBloc todosBloc,
+    this.todosBloc,
   ) : super(CompletedTodosState.empty()) {
-    _todosBloc = todosBloc;
+    _todosSubscription = todosBloc.stream.listen((state) {
+      print(state);
 
-    _todosSubscription = _todosBloc.stream.listen((state) {
       state.maybeWhen(
         data: _handleSubscription,
-        orElse: () {},
+        orElse: () => emit(CompletedTodosState.empty()),
       );
     });
   }
 
   void _handleSubscription(List<Todo> todos) {
     final completedTodos = todos.where((todo) => todo.complete).toList();
+
+    if (completedTodos.isEmpty) {
+      emit(CompletedTodosState.empty());
+      return;
+    }
+
     emit(CompletedTodosState.data(completedTodos));
   }
 

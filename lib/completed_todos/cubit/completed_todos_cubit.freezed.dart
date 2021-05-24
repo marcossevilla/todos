@@ -20,7 +20,7 @@ class _$CompletedTodosStateTearOff {
     return const _Empty();
   }
 
-  _Data data(List<Todo> todos) {
+  _Data data([List<Todo> todos = const []]) {
     return _Data(
       todos,
     );
@@ -192,8 +192,9 @@ class __$DataCopyWithImpl<$Res> extends _$CompletedTodosStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Data implements _Data {
-  const _$_Data(this.todos);
+  const _$_Data([this.todos = const []]);
 
+  @JsonKey(defaultValue: const [])
   @override
   final List<Todo> todos;
 
@@ -265,7 +266,7 @@ class _$_Data implements _Data {
 }
 
 abstract class _Data implements CompletedTodosState {
-  const factory _Data(List<Todo> todos) = _$_Data;
+  const factory _Data([List<Todo> todos]) = _$_Data;
 
   List<Todo> get todos => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)

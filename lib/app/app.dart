@@ -5,6 +5,7 @@ class TodosApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Todos App',
       theme: ThemeData(primarySwatch: Colors.indigo),
       home: HomeView(),
