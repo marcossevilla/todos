@@ -16,7 +16,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
 
   @override
   Stream<TodosState> mapEventToState(TodosEvent event) async* {
-    yield* event.when(
+    yield event.when(
       todoAdded: _mapTodoAddedToState,
       todoUpdated: _mapTodoUpdatedToState,
       todoDeleted: _mapTodoDeletedToState,
@@ -24,15 +24,15 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     );
   }
 
-  Stream<TodosState> _mapTodoAddedToState(Todo todo) async* {
-    yield state.when(
+  TodosState _mapTodoAddedToState(Todo todo) {
+    return state.when(
       empty: () => TodosState.data([todo]),
       data: (todos) => TodosState.data([...todos, todo]),
     );
   }
 
-  Stream<TodosState> _mapTodoUpdatedToState(Todo toUpdate, bool value) async* {
-    yield state.when(
+  TodosState _mapTodoUpdatedToState(Todo toUpdate, bool value) {
+    return state.when(
       empty: () => TodosState.empty(),
       data: (todos) {
         return TodosState.data([
@@ -43,8 +43,8 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     );
   }
 
-  Stream<TodosState> _mapTodoDeletedToState(Todo toDelete) async* {
-    yield state.when(
+  TodosState _mapTodoDeletedToState(Todo toDelete) {
+    return state.when(
       empty: () => TodosState.empty(),
       data: (todos) {
         return TodosState.data([
@@ -55,7 +55,5 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     );
   }
 
-  Stream<TodosState> _mapTodosClearedToState() async* {
-    yield state.maybeWhen(orElse: () => TodosState.empty());
-  }
+  TodosState _mapTodosClearedToState() => state.maybeWhen(orElse: () => TodosState.empty());
 }
