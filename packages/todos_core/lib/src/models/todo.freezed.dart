@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'todo.dart';
 
@@ -16,10 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$TodoTearOff {
   const _$TodoTearOff();
 
-  _Todo call([bool complete = false, String name = '']) {
+  _Todo call({bool complete = false, required String name}) {
     return _Todo(
-      complete,
-      name,
+      complete: complete,
+      name: name,
     );
   }
 }
@@ -92,11 +93,11 @@ class __$TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res>
     Object? name = freezed,
   }) {
     return _then(_Todo(
-      complete == freezed
+      complete: complete == freezed
           ? _value.complete
           : complete // ignore: cast_nullable_to_non_nullable
               as bool,
-      name == freezed
+      name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
@@ -107,12 +108,11 @@ class __$TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Todo extends _Todo {
-  _$_Todo([this.complete = false, this.name = '']) : super._();
+  _$_Todo({this.complete = false, required this.name}) : super._();
 
   @JsonKey(defaultValue: false)
   @override
   final bool complete;
-  @JsonKey(defaultValue: '')
   @override
   final String name;
 
@@ -124,19 +124,17 @@ class _$_Todo extends _Todo {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Todo &&
-            (identical(other.complete, complete) ||
-                const DeepCollectionEquality()
-                    .equals(other.complete, complete)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)));
+        (other.runtimeType == runtimeType &&
+            other is _Todo &&
+            const DeepCollectionEquality().equals(other.complete, complete) &&
+            const DeepCollectionEquality().equals(other.name, name));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(complete) ^
-      const DeepCollectionEquality().hash(name);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(complete),
+      const DeepCollectionEquality().hash(name));
 
   @JsonKey(ignore: true)
   @override
@@ -145,13 +143,13 @@ class _$_Todo extends _Todo {
 }
 
 abstract class _Todo extends Todo {
-  factory _Todo([bool complete, String name]) = _$_Todo;
+  factory _Todo({bool complete, required String name}) = _$_Todo;
   _Todo._() : super._();
 
   @override
-  bool get complete => throw _privateConstructorUsedError;
+  bool get complete;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$TodoCopyWith<_Todo> get copyWith => throw _privateConstructorUsedError;

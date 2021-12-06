@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -12,26 +10,27 @@ part 'todos_state.dart';
 part 'todos_bloc.freezed.dart';
 
 class TodosBloc extends Bloc<TodosEvent, TodosState> {
-  TodosBloc() : super(TodosState.empty());
-
-  @override
-  Stream<TodosState> mapEventToState(TodosEvent event) async* {
-    yield event.when(
-      todoAdded: _mapTodoAddedToState,
-      todoUpdated: _mapTodoUpdatedToState,
-      todoDeleted: _mapTodoDeletedToState,
-      todosCleared: _mapTodosClearedToState,
-    );
+  TodosBloc() : super(TodosState.empty()) {
+    on<TodosEvent>((event, emit) {
+      emit(
+        event.when(
+          todoAdded: _onTodoAdded,
+          todoUpdated: _onTodoUpdated,
+          todoDeleted: _onTodoDeleted,
+          todosCleared: _onTodosCleared,
+        ),
+      );
+    });
   }
 
-  TodosState _mapTodoAddedToState(Todo todo) {
+  TodosState _onTodoAdded(Todo todo) {
     return state.when(
       empty: () => TodosState.data([todo]),
       data: (todos) => TodosState.data([...todos, todo]),
     );
   }
 
-  TodosState _mapTodoUpdatedToState(Todo toUpdate, bool value) {
+  TodosState _onTodoUpdated(Todo toUpdate, bool value) {
     return state.when(
       empty: () => TodosState.empty(),
       data: (todos) {
@@ -43,7 +42,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     );
   }
 
-  TodosState _mapTodoDeletedToState(Todo toDelete) {
+  TodosState _onTodoDeleted(Todo toDelete) {
     return state.when(
       empty: () => TodosState.empty(),
       data: (todos) {
@@ -55,5 +54,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     );
   }
 
-  TodosState _mapTodosClearedToState() => state.maybeWhen(orElse: () => TodosState.empty());
+  TodosState _onTodosCleared() {
+    return state.maybeWhen(orElse: () => TodosState.empty());
+  }
 }

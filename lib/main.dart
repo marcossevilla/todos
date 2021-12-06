@@ -5,7 +5,8 @@ import 'app/app.dart';
 import 'app/app_bloc_observer.dart';
 
 void main() {
-  Bloc.observer = AppBlocObserver();
-
-  runApp(TodosApp());
+  BlocOverrides.runZoned(
+    () => runApp(TodosApp()),
+    blocObserver: AppBlocObserver(),
+  );
 }
