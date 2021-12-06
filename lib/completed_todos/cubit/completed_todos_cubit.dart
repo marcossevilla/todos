@@ -9,25 +9,25 @@ part 'completed_todos_state.dart';
 part 'completed_todos_cubit.freezed.dart';
 
 class CompletedTodosCubit extends Cubit<CompletedTodosState> {
-  final TodosBloc todosBloc;
-  late StreamSubscription _todosSubscription;
-
   CompletedTodosCubit(
     this.todosBloc,
-  ) : super(CompletedTodosState.empty()) {
+  ) : super(const CompletedTodosState.empty()) {
     _todosSubscription = todosBloc.stream.listen((state) {
       state.maybeWhen(
         data: _handleSubscription,
-        orElse: () => emit(CompletedTodosState.empty()),
+        orElse: () => emit(const CompletedTodosState.empty()),
       );
     });
   }
+
+  final TodosBloc todosBloc;
+  late StreamSubscription _todosSubscription;
 
   void _handleSubscription(List<Todo> todos) {
     final completedTodos = todos.where((todo) => todo.complete).toList();
 
     if (completedTodos.isEmpty) {
-      emit(CompletedTodosState.empty());
+      emit(const CompletedTodosState.empty());
       return;
     }
 

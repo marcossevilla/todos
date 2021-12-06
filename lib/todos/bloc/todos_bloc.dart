@@ -10,7 +10,7 @@ part 'todos_state.dart';
 part 'todos_bloc.freezed.dart';
 
 class TodosBloc extends Bloc<TodosEvent, TodosState> {
-  TodosBloc() : super(TodosState.empty()) {
+  TodosBloc() : super(const TodosState.empty()) {
     on<TodosEvent>((event, emit) {
       emit(
         event.when(
@@ -32,7 +32,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
 
   TodosState _onTodoUpdated(Todo toUpdate, bool value) {
     return state.when(
-      empty: () => TodosState.empty(),
+      empty: () => const TodosState.empty(),
       data: (todos) {
         return TodosState.data([
           for (var todo in todos)
@@ -44,7 +44,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
 
   TodosState _onTodoDeleted(Todo toDelete) {
     return state.when(
-      empty: () => TodosState.empty(),
+      empty: () => const TodosState.empty(),
       data: (todos) {
         return TodosState.data([
           for (final todo in todos)
@@ -55,6 +55,6 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
   }
 
   TodosState _onTodosCleared() {
-    return state.maybeWhen(orElse: () => TodosState.empty());
+    return state.maybeWhen(orElse: () => const TodosState.empty());
   }
 }

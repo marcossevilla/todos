@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'completed_todos_cubit.dart';
 
@@ -20,7 +21,7 @@ class _$CompletedTodosStateTearOff {
     return const _Empty();
   }
 
-  _Data data([List<Todo> todos = const []]) {
+  _Data data([List<Todo> todos = const <Todo>[]]) {
     return _Data(
       todos,
     );
@@ -39,6 +40,12 @@ mixin _$CompletedTodosState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(List<Todo> todos)? data,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function(List<Todo> todos)? data,
@@ -49,6 +56,12 @@ mixin _$CompletedTodosState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Empty value) empty,
     required TResult Function(_Data value) data,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Data value)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -105,7 +118,8 @@ class _$_Empty implements _Empty {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Empty);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Empty);
   }
 
   @override
@@ -118,6 +132,15 @@ class _$_Empty implements _Empty {
     required TResult Function(List<Todo> todos) data,
   }) {
     return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(List<Todo> todos)? data,
+  }) {
+    return empty?.call();
   }
 
   @override
@@ -140,6 +163,15 @@ class _$_Empty implements _Empty {
     required TResult Function(_Data value) data,
   }) {
     return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Data value)? data,
+  }) {
+    return empty?.call(this);
   }
 
   @override
@@ -192,9 +224,9 @@ class __$DataCopyWithImpl<$Res> extends _$CompletedTodosStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Data implements _Data {
-  const _$_Data([this.todos = const []]);
+  const _$_Data([this.todos = const <Todo>[]]);
 
-  @JsonKey(defaultValue: const [])
+  @JsonKey(defaultValue: const <Todo>[])
   @override
   final List<Todo> todos;
 
@@ -206,14 +238,14 @@ class _$_Data implements _Data {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Data &&
-            (identical(other.todos, todos) ||
-                const DeepCollectionEquality().equals(other.todos, todos)));
+        (other.runtimeType == runtimeType &&
+            other is _Data &&
+            const DeepCollectionEquality().equals(other.todos, todos));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(todos);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(todos));
 
   @JsonKey(ignore: true)
   @override
@@ -227,6 +259,15 @@ class _$_Data implements _Data {
     required TResult Function(List<Todo> todos) data,
   }) {
     return data(todos);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(List<Todo> todos)? data,
+  }) {
+    return data?.call(todos);
   }
 
   @override
@@ -253,6 +294,15 @@ class _$_Data implements _Data {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Data value)? data,
+  }) {
+    return data?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Empty value)? empty,
     TResult Function(_Data value)? data,
@@ -268,7 +318,7 @@ class _$_Data implements _Data {
 abstract class _Data implements CompletedTodosState {
   const factory _Data([List<Todo> todos]) = _$_Data;
 
-  List<Todo> get todos => throw _privateConstructorUsedError;
+  List<Todo> get todos;
   @JsonKey(ignore: true)
   _$DataCopyWith<_Data> get copyWith => throw _privateConstructorUsedError;
 }

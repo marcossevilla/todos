@@ -2,28 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:todos/completed_todos/completed_todos.dart';
+import 'package:todos/home/widgets/todo_card.dart';
 import 'package:todos/todos/todos.dart';
 
-import '../widgets/todo_card.dart';
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
-class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => TodosBloc()),
         BlocProvider(
-          lazy: false,
-          create: (context) => CompletedTodosCubit(context.read<TodosBloc>()),
+          create: (context) => CompletedTodosCubit(
+            context.read<TodosBloc>(),
+          ),
         ),
       ],
-      child: HomePage(),
+      child: HomeView(),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+class HomeView extends StatelessWidget {
+  HomeView({Key? key}) : super(key: key);
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -34,15 +36,15 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
-          bottom: TabBar(
+          bottom: const TabBar(
             tabs: [
               Tab(icon: Icon(Icons.list)),
               Tab(icon: Icon(Icons.check)),
             ],
           ),
-          title: Text('Todos'),
+          title: const Text('Todos'),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             TodosPage(),
             CompletedTodosPage(),
@@ -71,17 +73,19 @@ class _BottomButtons extends StatelessWidget {
       children: [
         FloatingActionButton(
           key: UniqueKey(),
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
           onPressed: () {
-            _scaffoldKey.currentState!.showBottomSheet((_) => TodoCard());
+            _scaffoldKey.currentState!.showBottomSheet<Widget>(
+              (_) => const TodoCard(),
+            );
           },
         ),
         const SizedBox(width: 10),
         FloatingActionButton(
           key: UniqueKey(),
-          child: Icon(Icons.clear),
+          child: const Icon(Icons.clear),
           onPressed: () {
-            context.read<TodosBloc>().add(TodosEvent.todosCleared());
+            context.read<TodosBloc>().add(const TodosEvent.todosCleared());
           },
         ),
       ],

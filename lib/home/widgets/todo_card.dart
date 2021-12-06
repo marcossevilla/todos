@@ -7,19 +7,24 @@ class TodoCard extends StatefulWidget {
   const TodoCard({Key? key}) : super(key: key);
 
   @override
-  _TodoCardState createState() => _TodoCardState();
+  State<TodoCard> createState() => _TodoCardState();
 }
 
 class _TodoCardState extends State<TodoCard> {
   final _formKey = GlobalKey<FormState>();
 
-  Todo todo = Todo();
+  Todo todo = Todo(name: '');
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 32, horizontal: 12),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      margin: const EdgeInsets.symmetric(
+        vertical: 32,
+        horizontal: 12,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
       child: Form(
         key: _formKey,
         child: Padding(

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'todos_bloc.dart';
 
@@ -22,10 +23,10 @@ class _$TodosEventTearOff {
     );
   }
 
-  _TodoUpdated todoUpdated(Todo todoAdded, bool complete) {
+  _TodoUpdated todoUpdated(Todo todoAdded, {required bool complete}) {
     return _TodoUpdated(
       todoAdded,
-      complete,
+      complete: complete,
     );
   }
 
@@ -54,6 +55,14 @@ mixin _$TodosEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Todo todoAdded)? todoAdded,
+    TResult Function(Todo todoAdded, bool complete)? todoUpdated,
+    TResult Function(Todo todoDeleted)? todoDeleted,
+    TResult Function()? todosCleared,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Todo todoAdded)? todoAdded,
     TResult Function(Todo todoAdded, bool complete)? todoUpdated,
@@ -68,6 +77,14 @@ mixin _$TodosEvent {
     required TResult Function(_TodoUpdated value) todoUpdated,
     required TResult Function(_TodoDeleted value) todoDeleted,
     required TResult Function(_TodosCleared value) todosCleared,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_TodoAdded value)? todoAdded,
+    TResult Function(_TodoUpdated value)? todoUpdated,
+    TResult Function(_TodoDeleted value)? todoDeleted,
+    TResult Function(_TodosCleared value)? todosCleared,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -152,15 +169,14 @@ class _$_TodoAdded implements _TodoAdded {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _TodoAdded &&
-            (identical(other.todoAdded, todoAdded) ||
-                const DeepCollectionEquality()
-                    .equals(other.todoAdded, todoAdded)));
+        (other.runtimeType == runtimeType &&
+            other is _TodoAdded &&
+            const DeepCollectionEquality().equals(other.todoAdded, todoAdded));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(todoAdded);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(todoAdded));
 
   @JsonKey(ignore: true)
   @override
@@ -176,6 +192,17 @@ class _$_TodoAdded implements _TodoAdded {
     required TResult Function() todosCleared,
   }) {
     return todoAdded(this.todoAdded);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Todo todoAdded)? todoAdded,
+    TResult Function(Todo todoAdded, bool complete)? todoUpdated,
+    TResult Function(Todo todoDeleted)? todoDeleted,
+    TResult Function()? todosCleared,
+  }) {
+    return todoAdded?.call(this.todoAdded);
   }
 
   @override
@@ -206,6 +233,17 @@ class _$_TodoAdded implements _TodoAdded {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_TodoAdded value)? todoAdded,
+    TResult Function(_TodoUpdated value)? todoUpdated,
+    TResult Function(_TodoDeleted value)? todoDeleted,
+    TResult Function(_TodosCleared value)? todosCleared,
+  }) {
+    return todoAdded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_TodoAdded value)? todoAdded,
     TResult Function(_TodoUpdated value)? todoUpdated,
@@ -223,7 +261,7 @@ class _$_TodoAdded implements _TodoAdded {
 abstract class _TodoAdded implements TodosEvent {
   const factory _TodoAdded(Todo todoAdded) = _$_TodoAdded;
 
-  Todo get todoAdded => throw _privateConstructorUsedError;
+  Todo get todoAdded;
   @JsonKey(ignore: true)
   _$TodoAddedCopyWith<_TodoAdded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -259,7 +297,7 @@ class __$TodoUpdatedCopyWithImpl<$Res> extends _$TodosEventCopyWithImpl<$Res>
           ? _value.todoAdded
           : todoAdded // ignore: cast_nullable_to_non_nullable
               as Todo,
-      complete == freezed
+      complete: complete == freezed
           ? _value.complete
           : complete // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -277,7 +315,7 @@ class __$TodoUpdatedCopyWithImpl<$Res> extends _$TodosEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_TodoUpdated implements _TodoUpdated {
-  const _$_TodoUpdated(this.todoAdded, this.complete);
+  const _$_TodoUpdated(this.todoAdded, {required this.complete});
 
   @override
   final Todo todoAdded;
@@ -292,20 +330,17 @@ class _$_TodoUpdated implements _TodoUpdated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _TodoUpdated &&
-            (identical(other.todoAdded, todoAdded) ||
-                const DeepCollectionEquality()
-                    .equals(other.todoAdded, todoAdded)) &&
-            (identical(other.complete, complete) ||
-                const DeepCollectionEquality()
-                    .equals(other.complete, complete)));
+        (other.runtimeType == runtimeType &&
+            other is _TodoUpdated &&
+            const DeepCollectionEquality().equals(other.todoAdded, todoAdded) &&
+            const DeepCollectionEquality().equals(other.complete, complete));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(todoAdded) ^
-      const DeepCollectionEquality().hash(complete);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(todoAdded),
+      const DeepCollectionEquality().hash(complete));
 
   @JsonKey(ignore: true)
   @override
@@ -321,6 +356,17 @@ class _$_TodoUpdated implements _TodoUpdated {
     required TResult Function() todosCleared,
   }) {
     return todoUpdated(this.todoAdded, complete);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Todo todoAdded)? todoAdded,
+    TResult Function(Todo todoAdded, bool complete)? todoUpdated,
+    TResult Function(Todo todoDeleted)? todoDeleted,
+    TResult Function()? todosCleared,
+  }) {
+    return todoUpdated?.call(this.todoAdded, complete);
   }
 
   @override
@@ -351,6 +397,17 @@ class _$_TodoUpdated implements _TodoUpdated {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_TodoAdded value)? todoAdded,
+    TResult Function(_TodoUpdated value)? todoUpdated,
+    TResult Function(_TodoDeleted value)? todoDeleted,
+    TResult Function(_TodosCleared value)? todosCleared,
+  }) {
+    return todoUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_TodoAdded value)? todoAdded,
     TResult Function(_TodoUpdated value)? todoUpdated,
@@ -366,10 +423,11 @@ class _$_TodoUpdated implements _TodoUpdated {
 }
 
 abstract class _TodoUpdated implements TodosEvent {
-  const factory _TodoUpdated(Todo todoAdded, bool complete) = _$_TodoUpdated;
+  const factory _TodoUpdated(Todo todoAdded, {required bool complete}) =
+      _$_TodoUpdated;
 
-  Todo get todoAdded => throw _privateConstructorUsedError;
-  bool get complete => throw _privateConstructorUsedError;
+  Todo get todoAdded;
+  bool get complete;
   @JsonKey(ignore: true)
   _$TodoUpdatedCopyWith<_TodoUpdated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -431,15 +489,15 @@ class _$_TodoDeleted implements _TodoDeleted {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _TodoDeleted &&
-            (identical(other.todoDeleted, todoDeleted) ||
-                const DeepCollectionEquality()
-                    .equals(other.todoDeleted, todoDeleted)));
+        (other.runtimeType == runtimeType &&
+            other is _TodoDeleted &&
+            const DeepCollectionEquality()
+                .equals(other.todoDeleted, todoDeleted));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(todoDeleted);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(todoDeleted));
 
   @JsonKey(ignore: true)
   @override
@@ -455,6 +513,17 @@ class _$_TodoDeleted implements _TodoDeleted {
     required TResult Function() todosCleared,
   }) {
     return todoDeleted(this.todoDeleted);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Todo todoAdded)? todoAdded,
+    TResult Function(Todo todoAdded, bool complete)? todoUpdated,
+    TResult Function(Todo todoDeleted)? todoDeleted,
+    TResult Function()? todosCleared,
+  }) {
+    return todoDeleted?.call(this.todoDeleted);
   }
 
   @override
@@ -485,6 +554,17 @@ class _$_TodoDeleted implements _TodoDeleted {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_TodoAdded value)? todoAdded,
+    TResult Function(_TodoUpdated value)? todoUpdated,
+    TResult Function(_TodoDeleted value)? todoDeleted,
+    TResult Function(_TodosCleared value)? todosCleared,
+  }) {
+    return todoDeleted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_TodoAdded value)? todoAdded,
     TResult Function(_TodoUpdated value)? todoUpdated,
@@ -502,7 +582,7 @@ class _$_TodoDeleted implements _TodoDeleted {
 abstract class _TodoDeleted implements TodosEvent {
   const factory _TodoDeleted(Todo todoDeleted) = _$_TodoDeleted;
 
-  Todo get todoDeleted => throw _privateConstructorUsedError;
+  Todo get todoDeleted;
   @JsonKey(ignore: true)
   _$TodoDeletedCopyWith<_TodoDeleted> get copyWith =>
       throw _privateConstructorUsedError;
@@ -538,7 +618,8 @@ class _$_TodosCleared implements _TodosCleared {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _TodosCleared);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _TodosCleared);
   }
 
   @override
@@ -553,6 +634,17 @@ class _$_TodosCleared implements _TodosCleared {
     required TResult Function() todosCleared,
   }) {
     return todosCleared();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Todo todoAdded)? todoAdded,
+    TResult Function(Todo todoAdded, bool complete)? todoUpdated,
+    TResult Function(Todo todoDeleted)? todoDeleted,
+    TResult Function()? todosCleared,
+  }) {
+    return todosCleared?.call();
   }
 
   @override
@@ -579,6 +671,17 @@ class _$_TodosCleared implements _TodosCleared {
     required TResult Function(_TodosCleared value) todosCleared,
   }) {
     return todosCleared(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_TodoAdded value)? todoAdded,
+    TResult Function(_TodoUpdated value)? todoUpdated,
+    TResult Function(_TodoDeleted value)? todoDeleted,
+    TResult Function(_TodosCleared value)? todosCleared,
+  }) {
+    return todosCleared?.call(this);
   }
 
   @override
@@ -628,6 +731,12 @@ mixin _$TodosState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(List<Todo> todos)? data,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function(List<Todo> todos)? data,
@@ -638,6 +747,12 @@ mixin _$TodosState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Empty value) empty,
     required TResult Function(_Data value) data,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Data value)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -693,7 +808,8 @@ class _$_Empty implements _Empty {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Empty);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Empty);
   }
 
   @override
@@ -706,6 +822,15 @@ class _$_Empty implements _Empty {
     required TResult Function(List<Todo> todos) data,
   }) {
     return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(List<Todo> todos)? data,
+  }) {
+    return empty?.call();
   }
 
   @override
@@ -728,6 +853,15 @@ class _$_Empty implements _Empty {
     required TResult Function(_Data value) data,
   }) {
     return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Data value)? data,
+  }) {
+    return empty?.call(this);
   }
 
   @override
@@ -794,14 +928,14 @@ class _$_Data implements _Data {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Data &&
-            (identical(other.todos, todos) ||
-                const DeepCollectionEquality().equals(other.todos, todos)));
+        (other.runtimeType == runtimeType &&
+            other is _Data &&
+            const DeepCollectionEquality().equals(other.todos, todos));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(todos);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(todos));
 
   @JsonKey(ignore: true)
   @override
@@ -815,6 +949,15 @@ class _$_Data implements _Data {
     required TResult Function(List<Todo> todos) data,
   }) {
     return data(todos);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(List<Todo> todos)? data,
+  }) {
+    return data?.call(todos);
   }
 
   @override
@@ -841,6 +984,15 @@ class _$_Data implements _Data {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Data value)? data,
+  }) {
+    return data?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Empty value)? empty,
     TResult Function(_Data value)? data,
@@ -856,7 +1008,7 @@ class _$_Data implements _Data {
 abstract class _Data implements TodosState {
   const factory _Data([List<Todo> todos]) = _$_Data;
 
-  List<Todo> get todos => throw _privateConstructorUsedError;
+  List<Todo> get todos;
   @JsonKey(ignore: true)
   _$DataCopyWith<_Data> get copyWith => throw _privateConstructorUsedError;
 }
