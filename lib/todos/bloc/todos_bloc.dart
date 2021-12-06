@@ -9,52 +9,59 @@ part 'todos_event.dart';
 part 'todos_state.dart';
 part 'todos_bloc.freezed.dart';
 
+/// {@template todos_bloc}
+///
+/// {@endtemplate}
 class TodosBloc extends Bloc<TodosEvent, TodosState> {
+  /// {@macro todos_bloc}
   TodosBloc() : super(const TodosState.empty()) {
-    on<TodosEvent>((event, emit) {
-      emit(
-        event.when(
-          todoAdded: _onTodoAdded,
-          todoUpdated: _onTodoUpdated,
-          todoDeleted: _onTodoDeleted,
-          todosCleared: _onTodosCleared,
-        ),
-      );
-    });
+    on<_TodoAdded>(_onTodoAdded);
+    on<_TodoUpdated>(_onTodoUpdated);
+    on<_TodoDeleted>(_onTodoDeleted);
+    on<_TodosCleared>(_onTodosCleared);
   }
 
-  TodosState _onTodoAdded(Todo todo) {
-    return state.when(
-      empty: () => TodosState.data([todo]),
-      data: (todos) => TodosState.data([...todos, todo]),
+  void _onTodoAdded(_TodoAdded event, Emitter<TodosState> emit) {
+    emit(
+      state.when(
+        empty: () => TodosState.data([event.todoAdded]),
+        data: (todos) => TodosState.data([...todos, event.todoAdded]),
+      ),
     );
   }
 
-  TodosState _onTodoUpdated(Todo toUpdate, bool value) {
-    return state.when(
-      empty: () => const TodosState.empty(),
-      data: (todos) {
-        return TodosState.data([
-          for (var todo in todos)
-            if (todo == toUpdate) todo.copyWith(complete: value) else todo
-        ]);
-      },
+  void _onTodoUpdated(_TodoUpdated event, Emitter<TodosState> emit) {
+    emit(
+      state.when(
+        empty: () => const TodosState.empty(),
+        data: (todos) {
+          return TodosState.data([
+            for (final todo in todos)
+              if (todo == event.todoAdded)
+                todo.copyWith(complete: event.complete)
+              else
+                todo
+          ]);
+        },
+      ),
     );
   }
 
-  TodosState _onTodoDeleted(Todo toDelete) {
-    return state.when(
-      empty: () => const TodosState.empty(),
-      data: (todos) {
-        return TodosState.data([
-          for (final todo in todos)
-            if (todo != toDelete) todo
-        ]);
-      },
+  void _onTodoDeleted(_TodoDeleted event, Emitter<TodosState> emit) {
+    emit(
+      state.when(
+        empty: () => const TodosState.empty(),
+        data: (todos) {
+          return TodosState.data([
+            for (final todo in todos)
+              if (todo != event.todoDeleted) todo
+          ]);
+        },
+      ),
     );
   }
 
-  TodosState _onTodosCleared() {
-    return state.maybeWhen(orElse: () => const TodosState.empty());
+  void _onTodosCleared(_TodosCleared event, Emitter<TodosState> emit) {
+    emit(state.maybeWhen(orElse: () => const TodosState.empty()));
   }
 }

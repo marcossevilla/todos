@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:todos/completed_todos/completed_todos.dart';
 
 class CompletedTodosPage extends StatelessWidget {
